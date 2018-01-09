@@ -1,6 +1,6 @@
 {
   "name": "crowded-google-map",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Display a lot of pins, markers, clusters on Google Map",
   "main": "dist/crowded-google-map.min.js",
   "module": "src/index.js",
