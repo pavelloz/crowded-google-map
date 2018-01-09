@@ -1,6 +1,4 @@
-const config = {
+export default {
   gridSize: 50,
   maxZoom: 14
 };
-
-export default config;

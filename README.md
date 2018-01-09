@@ -113,7 +113,7 @@ Example:
 
 Config that will be passed to Google Maps constructor. You can use everything that Google Maps supports (ie. styling).
 
-[Read more about options](https://developers.google.com/maps/documentation/javascript/3.exp/reference)
+Read more about google maps api options at https://developers.google.com/maps/documentation/javascript/3.exp/reference
 
 ### clustererConfig
 
@@ -128,7 +128,9 @@ Example:
 }
 ```
 
-Object that will extend/override default clusterer config that can be found in `src/config`. Read more about supported options at https://www.npmjs.com/package/node-js-marker-clusterer
+Object that will extend/override default clusterer config that can be found in `src/config`.
+
+Read more about supported options at https://www.npmjs.com/package/node-js-marker-clusterer
 
 ### spiderifyConfig
 
@@ -143,11 +145,13 @@ Example:
 }
 ```
 
-Object that will extend/override default spiderify config that can be found in `src/config`. Read more about supported options at https://www.npmjs.com/package/overlapping-marker-spiderfier
+Object that will extend/override default spiderify config that can be found in `src/config`.
+
+Read more about supported options at https://www.npmjs.com/package/overlapping-marker-spiderfier
 
 ### markersData
 
-Type: `Array` or `Promise` (returning array)
+Type: `Array` or `Promise` (resolving to an array)
 
 Example:
 
@@ -213,7 +217,9 @@ const infoWindowConfig = marker => {
 };
 ```
 
-Configuration of infoWindow based on currently created marker. Content key is required by Google. [Read more about infoWindows](https://developers.google.com/maps/documentation/javascript/infowindows)
+Configuration of infoWindow based on currently created marker. Content key is required by Google.
+
+[Read more about infoWindows](https://developers.google.com/maps/documentation/javascript/infowindows)
 
 ## Dependencies
 

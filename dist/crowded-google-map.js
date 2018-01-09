@@ -157,7 +157,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\nvar config = {\n  gridSize: 50,\n  maxZoom: 14\n};\nvar _default = config;\nexports.default = _default;\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/config/marker-clusterer.js\n// module id = ./src/config/marker-clusterer.js\n// module chunks = main\n\n//# sourceURL=webpack://crowded-google-map/./src/config/marker-clusterer.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\nvar _default = {\n  gridSize: 50,\n  maxZoom: 14\n};\nexports.default = _default;\n\n//////////////////\n// WEBPACK FOOTER\n// ./src/config/marker-clusterer.js\n// module id = ./src/config/marker-clusterer.js\n// module chunks = main\n\n//# sourceURL=webpack://crowded-google-map/./src/config/marker-clusterer.js?");
 
 /***/ }),
 
