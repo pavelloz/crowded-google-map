@@ -2,6 +2,8 @@
 
 Display a lot of POIs on Google Map without sacrificing UX
 
+![Demo](https://cdn.rawgit.com/pavelloz/crowded-google-map/demo/demo.gif)
+
 ## Prerequisites
 
 Before initializing the crowded google map, make sure you have loaded Google Maps API.
