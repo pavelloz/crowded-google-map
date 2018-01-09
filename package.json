@@ -1,0 +1,36 @@
+{
+  "name": "crowded-google-map",
+  "version": "1.0.0",
+  "description": "Display a lot of pins, markers, clusters on Google Map",
+  "main": "dist/crowded-google-map.min.js",
+  "module": "src/index.js",
+  "scripts": {
+    "start": "NODE_ENV=development webpack-cli -w",
+    "build": "NODE_ENV=development webpack-cli && webpack-cli",
+    "prepublish": "npm run build",
+    "stageDist": "git add dist"
+  },
+  "pre-commit": {
+    "silent": true,
+    "run": ["build", "stageDist"]
+  },
+  "repository": "pavelloz/crowded-google-map",
+  "author": "pavelloz@gmail.com",
+  "license": "Apache License 2.0",
+  "browserslist": "last 3 versions",
+  "dependencies": {
+    "node-js-marker-clusterer": "^1.0.0",
+    "object-assign-deep": "^0.3.1",
+    "overlapping-marker-spiderfier": "^1.1.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.36",
+    "@babel/preset-env": "^7.0.0-beta.36",
+    "babel-loader": "^8.0.0-beta.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "pre-commit": "^1.2.2",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "webpack": "^4.0.0-alpha.3",
+    "webpack-cli": "^2.0.2"
+  }
+}
