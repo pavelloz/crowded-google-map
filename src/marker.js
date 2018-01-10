@@ -1,7 +1,9 @@
 import OverlappingMarkerSpiderfier from 'overlapping-marker-spiderfier';
 
 const Marker = {
-  create: opts => new google.maps.Marker(opts),
+  valid: marker =>
+    marker.position && typeof marker.position.lat === 'number' && typeof marker.position.lng === 'number',
+  create: marker => new google.maps.Marker(marker),
   infoWindow: opts => new google.maps.InfoWindow(opts),
   createSpiderify: ({ map, spiderifyConfig }) => new OverlappingMarkerSpiderfier(map, spiderifyConfig),
   initializeSpiderify: (oms, googleMarker) => oms.addMarker(googleMarker),

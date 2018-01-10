@@ -1,7 +1,7 @@
 {
   "name": "crowded-google-map",
   "version": "1.0.1",
-  "description": "Display a lot of pins, markers, clusters on Google Map",
+  "description": "Display a lot of POIs on Google Map without sacrificing UX",
   "main": "dist/crowded-google-map.min.js",
   "module": "src/index.js",
   "scripts": {
@@ -12,10 +12,7 @@
   },
   "pre-commit": {
     "silent": true,
-    "run": [
-      "build",
-      "stageDist"
-    ]
+    "run": ["build", "stageDist"]
   },
   "repository": "pavelloz/crowded-google-map",
   "author": "pavelloz@gmail.com",

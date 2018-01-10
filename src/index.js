@@ -22,7 +22,8 @@ class CrowdedGoogleMap {
   constructor(config) {
     const opts = assignDeep({}, DEFAULTS, config);
     const options = Object.assign({}, opts, {
-      map: this.initialize(config.container, opts)
+      map: this.initialize(config.container, opts),
+      markersData: config.markersData
     });
 
     new Markers(options);

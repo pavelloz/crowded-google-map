@@ -16,8 +16,18 @@ class Markers {
   }
 
   get(opts) {
-    const isPromise = typeof opts.markersData.then === 'function';
-    return isPromise ? opts : new Promise(r => r(opts));
+    const isPromise = typeof opts.markersData === 'object' && typeof opts.markersData.then === 'function';
+    let options;
+
+    if (isPromise) {
+      return opts.markersData.then(markers => {
+        return (options = Object.assign({}, opts, {
+          markersData: markers
+        }));
+      });
+    }
+
+    return opts;
   }
 
   parse(opts) {
@@ -30,6 +40,10 @@ class Markers {
     const oms = Marker.createSpiderify(opts);
     return Object.assign({}, opts, {
       markersData: opts.markersData.reduce((prev, marker) => {
+        if (!Marker.valid(marker)) {
+          return false;
+        }
+
         const googleMarker = Marker.create(marker);
         const infoWindow = Marker.infoWindow(opts.infoWindowConfig(marker));
 
