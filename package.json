@@ -1,6 +1,6 @@
 {
   "name": "crowded-google-map",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Display a lot of POIs on Google Map without sacrificing UX",
   "main": "dist/crowded-google-map.min.js",
   "module": "src/index.js",
