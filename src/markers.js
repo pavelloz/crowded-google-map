@@ -38,12 +38,9 @@ class Markers {
 
   create(opts) {
     const oms = Marker.createSpiderify(opts);
-    return Object.assign({}, opts, {
-      markersData: opts.markersData.reduce((prev, marker) => {
-        if (!Marker.valid(marker)) {
-          return false;
-        }
 
+    return Object.assign({}, opts, {
+      markersData: opts.markersData.filter(Marker.valid).reduce((prev, marker) => {
         const googleMarker = Marker.create(marker);
         const infoWindow = Marker.infoWindow(opts.infoWindowConfig(marker));
 
