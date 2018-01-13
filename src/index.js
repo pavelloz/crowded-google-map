@@ -38,4 +38,6 @@ class CrowdedGoogleMap {
   }
 }
 
+window.CrowdedGoogleMap = CrowdedGoogleMap;
+
 export default CrowdedGoogleMap;

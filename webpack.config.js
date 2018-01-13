@@ -2,16 +2,16 @@ const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const dev = process.env.NODE_ENV === 'development';
+const isProduction = process.env.NODE_ENV === 'production';
 const packageName = process.env.npm_package_name;
 
 module.exports = {
   output: {
-    filename: `${packageName}.${dev ? '' : 'min.'}js`,
+    filename: `${packageName}.min.js`,
     library: packageName,
-    libraryTarget: 'umd',
-    umdNamedDefine: true
+    libraryTarget: 'umd'
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -23,6 +23,10 @@ module.exports = {
       }
     ]
   },
-  plugins: dev ? [] : [new UglifyJsPlugin()],
-  mode: dev ? 'development' : 'production'
+  plugins: [
+    new UglifyJsPlugin({
+      sourceMap: true
+    })
+  ],
+  mode: 'production'
 };
