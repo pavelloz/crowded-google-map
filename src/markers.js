@@ -1,5 +1,4 @@
 import MarkerClusterer from 'node-js-marker-clusterer';
-
 import Marker from './marker';
 
 class Markers {
@@ -11,23 +10,17 @@ class Markers {
 
     this.get(opts)
       .then(this.parse)
+      // .then(this.waitForMap)
       .then(this.create)
       .then(this.cluster);
   }
 
   get(opts) {
-    const isPromise = typeof opts.markersData === 'object' && typeof opts.markersData.then === 'function';
-    let options;
-
-    if (isPromise) {
-      return opts.markersData.then(markers => {
-        return (options = Object.assign({}, opts, {
-          markersData: markers
-        }));
+    return opts.markersData.then(markers => {
+      return Object.assign({}, opts, {
+        markersData: markers
       });
-    }
-
-    return opts;
+    });
   }
 
   parse(opts) {
@@ -36,13 +29,30 @@ class Markers {
     });
   }
 
+  // waitForMap(opts) {
+  // const isInitialized = opts => typeof opts.map.getProjection() === 'object';
+
+  // return new Promise(resolve => {
+  // const resolveIfReady = () => {
+  //   if (isInitialized(opts)) {
+  //     resolve(opts);
+  //   } else {
+  //     requestAnimationFrame(resolveIfReady);
+  //   }
+  // };
+
+  // requestAnimationFrame(resolveIfReady);
+  // });
+  // }
+
   create(opts) {
     const oms = Marker.createSpiderify(opts);
 
     return Object.assign({}, opts, {
       markersData: opts.markersData.filter(Marker.valid).reduce((prev, marker) => {
         const googleMarker = Marker.create(marker);
-        const infoWindow = Marker.infoWindow(opts.infoWindowConfig(marker));
+        const infoWindowConfig = opts.infoWindowConfig(marker);
+        const infoWindow = Marker.infoWindow(infoWindowConfig);
 
         Marker.attachEventHandler(googleMarker, infoWindow, opts.map);
         Marker.initializeSpiderify(oms, googleMarker);

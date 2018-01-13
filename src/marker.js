@@ -7,7 +7,6 @@ const Marker = {
   infoWindow: opts => new google.maps.InfoWindow(opts),
   createSpiderify: ({ map, spiderifyConfig }) => new OverlappingMarkerSpiderfier(map, spiderifyConfig),
   initializeSpiderify: (oms, googleMarker) => oms.addMarker(googleMarker),
-
   attachEventHandler: (googleMarker, infoWindow, map) => {
     googleMarker.addListener('click', () => {
       map.activeInfoWindow.close();

@@ -19,18 +19,20 @@ new CrowdedGoogleMap({
     center: { lat: -34.397, lng: 150.644 },
     zoom: 10
   },
-  markersData: [
-    {
-      first_name: "Michael",
-      last_name: "Scott",
-      position: { lat: 34.210973, lng: -118.436232 }
-    },
-    {
-      first_name: "Kevin",
-      last_name: "Malone",
-      position: { lat: -25.363, lng: 131.044 }
-    }
-  ]
+  markersData: new Promise(resolve =>
+    resolve([
+      {
+        first_name: "Michael",
+        last_name: "Scott",
+        position: { lat: 34.210973, lng: -118.436232 }
+      },
+      {
+        first_name: "Kevin",
+        last_name: "Malone",
+        position: { lat: -25.363, lng: 131.044 }
+      }
+    ])
+  )
 });
 ```
 
@@ -151,24 +153,9 @@ Read more about supported options at https://www.npmjs.com/package/overlapping-m
 
 ### markersData
 
-Type: `Array` or `Promise` (resolving to an array)
+Type: `Promise` (resolving to an array of objects)
 
 Example:
-
-```js
-[
-  {
-    first_name: "Michael",
-    last_name: "Scott",
-    position: { lat: 34.210973, lng: -118.436232 }
-  },
-  {
-    first_name: "Kevin",
-    last_name: "Malone",
-    position: { lat: -25.363, lng: 131.044 }
-  }
-];
-```
 
 ```js
 fetch("/api/getmarkers.json", {
@@ -245,6 +232,10 @@ window.mapMarkers = new Promise(function(resolve) {
 
 Having this set up you can pass `window.mapMarkers` as `markersData` to the map constructor - it will initialize as much as possible without the markers, then continue when they arrive.
 
+## Testing
+
+Run `npm test` to open test page with (hopefully) working example.
+
 ## Troubleshooting
 
 ### My map isn't showing up at all
@@ -258,3 +249,7 @@ Remember to provide some kind of css to make sure the map has height. You can ev
 ### My clusters are missing icons
 
 Make sure you pass styles with proper urls to graphic icons. See Advanced Usage example.
+
+## Known bugs
+
+`Uncaught TypeError: Cannot read property 'fromLatLngToDivPixel' of undefined` in `oms.js`. Everything works, if you have any idea why it throws error anyway please help me fix it :)
