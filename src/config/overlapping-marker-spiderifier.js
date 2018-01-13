@@ -1,8 +1,8 @@
 export default {
   markersWontMove: true,
   markersWontHide: true,
-  circleFootSeparation: 65,
-  nearbyDistance: 32,
+  circleFootSeparation: 60,
+  nearbyDistance: 60,
   keepSpiderfied: true,
   basicFormatEvents: true
 };
