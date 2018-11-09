@@ -14,25 +14,23 @@ Read how to do it at https://developers.google.com/maps/documentation/javascript
 
 ```js
 new CrowdedGoogleMap({
-  container: document.querySelector(".google-map"),
+  container: document.querySelector('.google-map'),
   googleMapsConfig: {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 10
   },
-  markersData: new Promise(resolve =>
-    resolve([
-      {
-        first_name: "Michael",
-        last_name: "Scott",
-        position: { lat: 34.210973, lng: -118.436232 }
-      },
-      {
-        first_name: "Kevin",
-        last_name: "Malone",
-        position: { lat: -25.363, lng: 131.044 }
-      }
-    ])
-  )
+  markersData: Promise.resolve([
+    {
+      first_name: 'Michael',
+      last_name: 'Scott',
+      position: { lat: 34.210973, lng: -118.436232 }
+    },
+    {
+      first_name: 'Kevin',
+      last_name: 'Malone',
+      position: { lat: -25.363, lng: 131.044 }
+    }
+  ])
 });
 ```
 
@@ -40,21 +38,21 @@ new CrowdedGoogleMap({
 
 ```js
 const defaultClusterStyle = {
-  textColor: "white",
+  textColor: 'white',
   textSize: 12,
   height: 50,
   width: 50
 };
 
 new CrowdedGoogleMap({
-  container: document.querySelector(".google-map"),
+  container: document.querySelector('.google-map'),
   googleMapsConfig: {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 10,
-    mapTypeId: "satellite"
+    mapTypeId: 'satellite'
   },
-  markersData: fetch("/api/getmarkers.json", {
-    credentials: "same-origin"
+  markersData: fetch('/api/getmarkers.json', {
+    credentials: 'same-origin'
   }).then(res => resolve(res.json())),
   parseMarkerData: marker => {
     return Object.assign({}, marker, {
@@ -77,10 +75,10 @@ new CrowdedGoogleMap({
   clustererConfig: {
     styles: [
       Object.assign({}, defaultClusterStyle, {
-        url: `http://my.cdn.com/images/gmap/small.png`
+        url: 'http://my.cdn.com/images/gmap/small.png'
       }),
       Object.assign({}, defaultClusterStyle, {
-        url: `http://my.cdn.com/images/gmap/big.png`
+        url: 'http://my.cdn.com/images/gmap/big.png'
       })
     ]
   }
@@ -96,7 +94,7 @@ Type: DOM Element
 Example:
 
 ```js
-document.querySelector(".google-map");
+document.querySelector('.google-map');
 ```
 
 ### googleMapsConfig
@@ -158,8 +156,8 @@ Type: `Promise` (resolving to an array of objects)
 Example:
 
 ```js
-fetch("/api/getmarkers.json", {
-  credentials: "same-origin"
+fetch('/api/getmarkers.json', {
+  credentials: 'same-origin'
 }).then(res => resolve(res.json()));
 ```
 
@@ -212,21 +210,19 @@ Configuration of infoWindow based on currently created marker. Content key is re
 
 This script includes two depencenies to handle crowded maps:
 
-* [node-js-marker-clusterer](https://www.npmjs.com/package/node-js-marker-clusterer) - Joins markers that are close by to prevent overlapping
-* [overlapping-marker-spiderfier](https://www.npmjs.com/package/overlapping-marker-spiderfier) - Allows user to spread pins that are very close together (after zooming in, where clustering is no longer available) see them better
+- [node-js-marker-clusterer](https://www.npmjs.com/package/node-js-marker-clusterer) - Joins markers that are close by to prevent overlapping
+- [overlapping-marker-spiderfier](https://www.npmjs.com/package/overlapping-marker-spiderfier) - Allows user to spread pins that are very close together (after zooming in, where clustering is no longer available) see them better
 
 ## Performance tips
 
 If your markers are served by the API (which often is the case), start downloading them as soon as possible.
-For example, you might want to use XHR to start downloading them in the `<head>`. The benefits depend on weight/speed of loading other blocking assets, so your milage may vary. In my tests I have observed 2-2.5 seconds boost by starting request as a first request on the site.
+For example, you might want to use XHR to start downloading them in the `<head>`. The benefits depend on weight/speed of loading other blocking assets, so your milage may vary. In my tests I have observed 2-2.5 seconds boost by starting request as a first request on the site, but YMMV.
 
 ```js
 window.mapMarkers = new Promise(function(resolve) {
-  return fetch("/getMarkers.json", { credentials: "same-origin" }).then(
-    function(res) {
-      return resolve(res.json());
-    }
-  );
+  return fetch('/getMarkers.json', { credentials: 'same-origin' }).then(function(res) {
+    return resolve(res.json());
+  });
 });
 ```
 
@@ -234,7 +230,7 @@ Having this set up you can pass `window.mapMarkers` as `markersData` to the map 
 
 ## Testing
 
-Run `npm test` to open test page with (hopefully) working example.
+Run `npm test` to serve test page on http://localhost:8000.
 
 ## Troubleshooting
 
@@ -252,4 +248,10 @@ Make sure you pass styles with proper urls to graphic icons. See Advanced Usage 
 
 ## Known bugs
 
-`Uncaught TypeError: Cannot read property 'fromLatLngToDivPixel' of undefined` in `oms.js`. Everything works, if you have any idea why it throws error anyway please help me fix it :)
+- `Uncaught TypeError: Cannot read property 'fromLatLngToDivPixel' of undefined` in `oms.js`. Everything works, if you have any idea why it throws error anyway please help me fix it :)
+
+- Marker image is not positioned correctly - its anchor should not be 0, 0
+
+## TODO
+
+Migrate from `node-js-marker-clusterer` to [MarkerClustererPlus for Google Maps V3](https://github.com/googlemaps/v3-utility-library/tree/master/markerclustererplus) as it is still maintained.
