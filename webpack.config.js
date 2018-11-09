@@ -1,8 +1,5 @@
-const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
-const isProduction = process.env.NODE_ENV === 'production';
 const packageName = process.env.npm_package_name;
 
 module.exports = {
@@ -23,10 +20,12 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new UglifyJsPlugin({
-      sourceMap: true
-    })
-  ],
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        sourceMap: true
+      })
+    ]
+  },
   mode: 'production'
 };

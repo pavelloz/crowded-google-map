@@ -1,115 +1,130 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Example of crowded google map</title>
+  </head>
 
-<head>
-  <title>Example of crowded google map</title>
-</head>
+  <body>
+    <div data-crowded-google-map style="height: 700px;"></div>
 
-<body>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="../dist/crowded-google-map.min.js"></script>
 
-  <div data-crowded-google-map style="height: 700px;"></div>
-
-
-  <script src="https://maps.googleapis.com/maps/api/js"></script>
-  <script src="../dist/crowded-google-map.min.js"></script>
-
-  <script>
-    const defaultClusterStyle = {
-      height: 53,
-      width: 52
-    };
-    const container = document.querySelector("[data-crowded-google-map]");
-    const googleMapsConfig = {
-      center: {
-        lat: 41.408970,
-        lng: -75.662415
-      },
-      zoom: 12
-    };
-    const markerClustererConfig = {
-      styles: [Object.assign({}, defaultClusterStyle, {
-        url: `https://rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m1.png`
-      }), Object.assign({}, defaultClusterStyle, {
-        url: `https://rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m2.png`
-      }), Object.assign({}, defaultClusterStyle, {
-        url: `https://rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m3.png`
-      }), Object.assign({}, defaultClusterStyle, {
-        url: `https://rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m4.png`
-      }), Object.assign({}, defaultClusterStyle, {
-        url: `https://rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m5.png`
-      })]
-    }
-    const omsConfig = {};
-    const markers = new Promise(resolve => resolve([{
-      first_name: "Michael",
-      last_name: "Scott",
-      position: {
-        lat: 41.408970,
-        lng: -75.662415
-      }
-    }, {
-      first_name: "Kevin",
-      last_name: "Malone",
-      position: {
-        lat: 41.408970,
-        lng: -75.662415
-      }
-    }, {
-      first_name: "Dwight",
-      last_name: "Schrute",
-      position: {
-        lat: 41.408970,
-        lng: -75.662415
-      }
-    }, {
-      first_name: "Pam",
-      last_name: "Beesly",
-      position: {
-        lat: 41.408970,
-        lng: -75.662415
-      }
-    }, {
-      first_name: "Jim",
-      last_name: "Halpert",
-      position: {
-        lat: 41.408970,
-        lng: -75.662415
-      }
-    }, {
-      first_name: "Angela",
-      last_name: "Martin",
-      position: {
-        lat: 41.408970,
-        lng: -75.662415
-      }
-    }]));
-    const markerParser = marker => {
-      return Object.assign({}, marker, {
-        name: `${marker.first_name} ${marker.last_name}`,
-        href: `http://google.com/?q=${marker.first_name}+${marker.last_name}`
-      });
-    };
-    const infoWindow = marker => {
-      return {
-        content: `<a href="${marker.href}">${marker.name}</a>`
+    <script>
+      const defaultClusterStyle = {
+        height: 53,
+        width: 52
       };
-    };
-
-    if (container) {
-      const options = {
-        container: container,
-        googleMapsConfig: googleMapsConfig,
-        clustererConfig: markerClustererConfig,
-        spiderifyConfig: omsConfig,
-        markersData: markers,
-        parseMarkerData: markerParser,
-        infoWindowConfig: infoWindow
+      const container = document.querySelector('[data-crowded-google-map]');
+      const googleMapsConfig = {
+        center: {
+          lat: 41.40897,
+          lng: -75.662415
+        },
+        zoom: 12
+      };
+      const markerClustererConfig = {
+        styles: [
+          Object.assign({}, defaultClusterStyle, {
+            url:
+              'https://rawcdn.githack.com/googlemaps/js-marker-clusterer/06be139ba778ce5d59e7837ac2279631f4b439c6/images/m1.png'
+          }),
+          Object.assign({}, defaultClusterStyle, {
+            url:
+              'https://rawcdn.githack.com/googlemaps/js-marker-clusterer/06be139ba778ce5d59e7837ac2279631f4b439c6/images/m2.png'
+          }),
+          Object.assign({}, defaultClusterStyle, {
+            url:
+              'https://rawcdn.githack.com/googlemaps/js-marker-clusterer/06be139ba778ce5d59e7837ac2279631f4b439c6/images/m3.png'
+          }),
+          Object.assign({}, defaultClusterStyle, {
+            url:
+              'https://rawcdn.githack.com/googlemaps/js-marker-clusterer/06be139ba778ce5d59e7837ac2279631f4b439c6/images/m4.png'
+          }),
+          Object.assign({}, defaultClusterStyle, {
+            url:
+              'https://rawcdn.githack.com/googlemaps/js-marker-clusterer/06be139ba778ce5d59e7837ac2279631f4b439c6/images/m5.png'
+          })
+        ]
+      };
+      const omsConfig = {};
+      const markers = new Promise(resolve =>
+        resolve([
+          {
+            first_name: 'Michael',
+            last_name: 'Scott',
+            position: {
+              lat: 41.40897,
+              lng: -75.662415
+            }
+          },
+          {
+            first_name: 'Kevin',
+            last_name: 'Malone',
+            position: {
+              lat: 41.40897,
+              lng: -75.662415
+            }
+          },
+          {
+            first_name: 'Dwight',
+            last_name: 'Schrute',
+            position: {
+              lat: 41.40897,
+              lng: -75.662415
+            }
+          },
+          {
+            first_name: 'Pam',
+            last_name: 'Beesly',
+            position: {
+              lat: 41.40897,
+              lng: -75.662415
+            }
+          },
+          {
+            first_name: 'Jim',
+            last_name: 'Halpert',
+            position: {
+              lat: 41.40897,
+              lng: -75.662415
+            }
+          },
+          {
+            first_name: 'Angela',
+            last_name: 'Martin',
+            position: {
+              lat: 41.40897,
+              lng: -75.662415
+            }
+          }
+        ])
+      );
+      const markerParser = marker => {
+        return Object.assign({}, marker, {
+          name: `${marker.first_name} ${marker.last_name}`,
+          href: `http://google.com/?q=${marker.first_name}+${marker.last_name}`
+        });
+      };
+      const infoWindow = marker => {
+        return {
+          content: `<a href="${marker.href}">${marker.name}</a>`
+        };
       };
 
-      new CrowdedGoogleMap(options);
-    }
-  </script>
+      if (container) {
+        const options = {
+          container: container,
+          googleMapsConfig: googleMapsConfig,
+          clustererConfig: markerClustererConfig,
+          spiderifyConfig: omsConfig,
+          markersData: markers,
+          parseMarkerData: markerParser,
+          infoWindowConfig: infoWindow
+        };
 
-</body>
-
+        new CrowdedGoogleMap(options);
+      }
+    </script>
+  </body>
 </html>
